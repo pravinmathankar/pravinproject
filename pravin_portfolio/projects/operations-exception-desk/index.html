@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exception Desk — Operations Console</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">ED</div>
+        <div>
+          <strong>Exception Desk</strong>
+          <span>Operations Console</span>
+        </div>
+      </div>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav>
+        <button class="nav-item active" data-view="overview"><span>⌂</span> Overview</button>
+        <button class="nav-item" data-view="cases"><span>◈</span> Cases <b>12</b></button>
+        <button class="nav-item" data-view="imports"><span>⇩</span> Imports</button>
+        <button class="nav-item" data-view="audit"><span>◷</span> Audit trail</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="system-card">
+          <div class="status-dot"></div>
+          <div>
+            <strong>All systems ready</strong>
+            <span>Offline demo environment</span>
+          </div>
+        </div>
+        <div class="user-card">
+          <div class="avatar">AK</div>
+          <div>
+            <strong>Arjun Kapoor</strong>
+            <span>Operations Lead</span>
+          </div>
+          <span class="more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">Operations <span>/</span> <strong id="pageTitle">Overview</strong></div>
+        <div class="top-actions">
+          <div class="cut-pill"><span class="pulse"></span> Cut <strong>04 Oct 2026 · 09:30</strong></div>
+          <button class="icon-btn" title="Notifications">♢<i></i></button>
+          <button class="help-btn">?</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div id="overviewView" class="view active">
+          <div class="page-head">
+            <div>
+              <p class="eyebrow">MONDAY, 04 OCTOBER 2026</p>
+              <h1>Good morning, Arjun.</h1>
+              <p class="subhead">Here’s what needs attention before the desk starts processing.</p>
+            </div>
+            <button class="primary-btn" onclick="openImport()">＋ Import source</button>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-top"><span>Open exceptions</span><span class="metric-icon">◈</span></div>
+              <div class="metric-value">12</div>
+              <div class="metric-foot"><span class="danger-text">3 high priority</span><span>from 5 sources</span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-top"><span>Needs source</span><span class="metric-icon amber">◌</span></div>
+              <div class="metric-value">4</div>
+              <div class="metric-foot"><span class="amber-text">2 stale</span><span>1 missing · 1 ambiguous</span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-top"><span>Resolved today</span><span class="metric-icon green">✓</span></div>
+              <div class="metric-value">8</div>
+              <div class="metric-foot"><span class="green-text">+3 vs yesterday</span><span>all audited</span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-top"><span>Source health</span><span class="metric-icon blue">↗</span></div>
+              <div class="metric-value">96<span class="metric-unit">%</span></div>
+              <div class="metric-foot"><span class="green-text">5 / 5 received</span><span>latest 09:26</span></div>
+            </div>
+          </div>
+
+          <div class="grid-two">
+            <section class="panel">
+              <div class="panel-head">
+                <div><h2>Exceptions requiring attention</h2><p>Prioritized by impact and evidence quality</p></div>
+                <button class="text-btn" onclick="showView('cases')">View all →</button>
+              </div>
+              <div class="case-list">
+                <button class="case-row" onclick="openCase('EX-1048')">
+                  <div class="severity high">HIGH</div>
+                  <div class="case-main"><strong>Settled holding mismatch</strong><span>CL-2084 · INFY · INE009A01021</span></div>
+                  <div class="delta">+50 <small>shares</small></div>
+                  <div class="case-time">09:21</div>
+                </button>
+                <button class="case-row" onclick="openCase('EX-1047')">
+                  <div class="severity medium">MED</div>
+                  <div class="case-main"><strong>Ambiguous cash evidence</strong><span>CL-1732 · duplicate bank reference</span></div>
+                  <div class="delta neutral">₹25,000</div>
+                  <div class="case-time">09:17</div>
+                </button>
+                <button class="case-row" onclick="openCase('EX-1045')">
+                  <div class="severity medium">MED</div>
+                  <div class="case-main"><strong>Pending DP movement</strong><span>CL-1941 · TCS · settlement pending</span></div>
+                  <div class="delta neutral">+20 <small>pending</small></div>
+                  <div class="case-time">08:58</div>
+                </button>
+                <button class="case-row" onclick="openCase('EX-1042')">
+                  <div class="severity critical">CRIT</div>
+                  <div class="case-main"><strong>Scope access anomaly</strong><span>Support role · restricted client</span></div>
+                  <div class="delta neutral">blocked</div>
+                  <div class="case-time">08:42</div>
+                </button>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div><h2>Source health</h2><p>Latest received artifacts</p></div>
+                <button class="text-btn" onclick="showView('imports')">Imports →</button>
+              </div>
+              <div class="source-list">
+                <div class="source-row"><div class="source-icon csv">CSV</div><div><strong>Internal holdings</strong><span>09:26 · 10,284 rows</span></div><span class="source-ok">Ready</span></div>
+                <div class="source-row"><div class="source-icon html">HTML</div><div><strong>DP positions</strong><span>09:24 · 10,311 rows</span></div><span class="source-ok">Ready</span></div>
+                <div class="source-row"><div class="source-icon json">JSON</div><div><strong>Cash ledger</strong><span>09:20 · 100,842 events</span></div><span class="source-ok">Ready</span></div>
+                <div class="source-row"><div class="source-icon xlsx">XLSX</div><div><strong>Bank confirmation</strong><span>09:18 · 4,829 rows</span></div><span class="source-warn">Review</span></div>
+                <div class="source-row"><div class="source-icon ref">CSV</div><div><strong>Exchange reference</strong><span>09:15 · 8,201 rows</span></div><span class="source-ok">Ready</span></div>
+              </div>
+            </section>
+          </div>
+
+          <section class="panel evidence-strip">
+            <div class="evidence-copy">
+              <span class="eyebrow">EVIDENCE PRINCIPLE</span>
+              <h2>Unknown is a valid result.</h2>
+              <p>A missing, stale, unmatched, or conflicting source is never silently treated as zero or matched evidence.</p>
+            </div>
+            <div class="unknown-demo">
+              <span class="unknown-badge">UNKNOWN</span>
+              <div><strong>DP source not comparable</strong><span>Cut differs by 37 minutes · comparison withheld</span></div>
+            </div>
+          </section>
+        </div>
+
+        <div id="casesView" class="view">
+          <div class="page-head compact">
+            <div><p class="eyebrow">CASE QUEUE</p><h1>Exceptions</h1><p class="subhead">Server-filtered investigation queue · 12 open cases</p></div>
+            <button class="secondary-btn" onclick="toggleFilters()">☷ Filters</button>
+          </div>
+          <div class="filter-bar" id="filterBar">
+            <input id="caseSearch" placeholder="Search client, ISIN, case ID..." oninput="filterCases()">
+            <select onchange="filterCases()"><option>All severity</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select>
+            <select onchange="filterCases()"><option>All states</option><option>Open</option><option>Investigating</option><option>Needs source</option><option>Resolved</option></select>
+            <button class="clear-btn" onclick="clearFilters()">Clear</button>
+          </div>
+          <section class="panel table-panel">
+            <div class="table-head"><span>CASE</span><span>CLIENT / SECURITY</span><span>IMPACT</span><span>STATE</span><span>UPDATED</span><span></span></div>
+            <div id="caseTable"></div>
+          </section>
+        </div>
+
+        <div id="importsView" class="view">
+          <div class="page-head compact">
+            <div><p class="eyebrow">SOURCE CONTROL</p><h1>Imports</h1><p class="subhead">Versioned, reproducible source ingestion</p></div>
+            <button class="primary-btn" onclick="openImport()">＋ Import source</button>
+          </div>
+          <section class="panel import-panel">
+            <div class="import-drop" onclick="openImport()">
+              <div class="upload-icon">⇧</div>
+              <h2>Import a source artifact</h2>
+              <p>CSV, HTML, JSONL or XLSX · identical bytes are idempotent</p>
+              <button class="secondary-btn">Choose file</button>
+            </div>
+            <div class="version-note"><strong>Versioning rule</strong><span>Changed bytes under the same filename create a new version. Prior evidence and investigator notes remain preserved.</span></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><div><h2>Recent imports</h2><p>Provenance and validation status</p></div></div>
+            <div class="import-table">
+              <div class="import-row header"><span>Source</span><span>Received</span><span>Rows</span><span>Hash</span><span>Status</span></div>
+              <div class="import-row"><span><strong>Internal holdings</strong><small>holdings_2026-10-04.csv · v3</small></span><span>09:26</span><span>10,284</span><span>sha256: 8f3a…c19d</span><span class="source-ok">Imported</span></div>
+              <div class="import-row"><span><strong>DP positions</strong><small>dp_2026-10-04.html · v2</small></span><span>09:24</span><span>10,311</span><span>sha256: a90d…f20b</span><span class="source-ok">Imported</span></div>
+              <div class="import-row"><span><strong>Bank confirmation</strong><small>bank_2026-10-04.xlsx · v1</small></span><span>09:18</span><span>4,829</span><span>sha256: 7c44…a8e1</span><span class="source-warn">2 warnings</span></div>
+            </div>
+          </section>
+        </div>
+
+        <div id="auditView" class="view">
+          <div class="page-head compact">
+            <div><p class="eyebrow">TRACEABILITY</p><h1>Audit trail</h1><p class="subhead">Every investigation action is attributable and evidence-linked.</p></div>
+          </div>
+          <section class="panel audit-panel">
+            <div class="audit-item"><div class="audit-avatar">AK</div><div><strong>Arjun Kapoor <span>changed EX-1048 to Investigating</span></strong><p>Reason: DP source requires row-level comparison.</p><small>04 Oct 2026 · 09:22 · evidence v2</small></div></div>
+            <div class="audit-item"><div class="audit-avatar blue">NS</div><div><strong>Nisha Shah <span>added note to EX-1047</span></strong><p>“Duplicate UTR requires client, direction, amount and timing verification.”</p><small>04 Oct 2026 · 09:18 · bank v1</small></div></div>
+            <div class="audit-item"><div class="audit-avatar amber">RK</div><div><strong>Rohan Kulkarni <span>imported corrected DP file</span></strong><p>dp_2026-10-04.html · version 2 supersedes version 1 for cut 09:00.</p><small>04 Oct 2026 · 09:11 · sha256 a90d…f20b</small></div></div>
+            <div class="audit-item"><div class="audit-avatar">AK</div><div><strong>Arjun Kapoor <span>reopened EX-1039</span></strong><p>Source evidence changed after prior resolution.</p><small>04 Oct 2026 · 08:56 · evidence v4</small></div></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="caseModal">
+    <div class="modal case-modal">
+      <button class="modal-close" onclick="closeModal('caseModal')">×</button>
+      <div class="modal-head"><div><span id="modalSeverity" class="severity high">HIGH</span><span class="case-id" id="modalCaseId">EX-1048</span><h2 id="modalTitle">Settled holding mismatch</h2><p id="modalSubtitle">Client CL-2084 · INFY · INE009A01021</p></div><select id="statusSelect"><option>OPEN</option><option>INVESTIGATING</option><option>NEEDS_SOURCE</option><option>RESOLVED</option><option>REOPENED</option></select></div>
+      <div class="detail-grid">
+        <div>
+          <div class="detail-card"><h3>Normalized result</h3><div class="compare"><div><span>Internal settled</span><strong>500</strong><small>shares</small></div><div class="compare-arrow">−</div><div><span>DP settled</span><strong>450</strong><small>shares</small></div><div class="delta-big">+50</div></div><div class="rule-note">Rule: quantity_delta = internal_settled_qty − dp_settled_qty</div></div>
+          <div class="detail-card"><h3>Evidence</h3><div class="evidence-line"><span class="file-tag csv">CSV</span><div><strong>Internal holdings</strong><span>cut 09:00 · row 284 · version 3</span></div><b>500</b></div><div class="evidence-line"><span class="file-tag html">HTML</span><div><strong>DP position extract</strong><span>cut 09:00 · row 871 · version 2</span></div><b>450</b></div><div class="evidence-line pending"><span class="file-tag html">HTML</span><div><strong>DP movement</strong><span>movement_state = PENDING · row 872</span></div><b>+50</b></div></div>
+        </div>
+        <aside class="detail-side">
+          <div class="side-card"><h3>Provenance</h3><dl><dt>Report cut</dt><dd>04 Oct · 09:00</dd><dt>Received</dt><dd>09:24:18 IST</dd><dt>Mapping</dt><dd>holdings.v3</dd><dt>Hash</dt><dd>sha256:a90d…f20b</dd><dt>Raw row</dt><dd>DP-0871</dd></dl></div>
+          <div class="side-card"><h3>Investigation note</h3><textarea placeholder="Add an evidence-linked note…"></textarea><button class="primary-btn full" onclick="saveNote()">Add note</button></div>
+          <div class="side-card"><h3>Access</h3><div class="access-ok">✓ You can investigate this client</div><span class="side-muted">Role: Operations Lead</span></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="importModal">
+    <div class="modal small-modal">
+      <button class="modal-close" onclick="closeModal('importModal')">×</button>
+      <span class="eyebrow">NEW IMPORT</span><h2>Import source artifact</h2><p class="modal-desc">Select a source. This demo validates the artifact locally and shows the expected provenance record.</p>
+      <label>Source<select><option>Internal holdings snapshot</option><option>DP position extract</option><option>Internal cash ledger</option><option>Bank confirmation</option><option>Exchange reference</option></select></label>
+      <div class="fake-file">⇧ <span>No file selected</span><button class="secondary-btn">Browse</button></div>
+      <div class="modal-warning">Read-only source acquisition. No private portal or trading API is accessed.</div>
+      <button class="primary-btn full" onclick="simulateImport()">Validate & import</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
